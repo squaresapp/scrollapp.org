@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10000px" height="122px" viewBox="0 0 10000 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Dip</title>
+    <defs>
+        <path d="M0,122 L10000,122 L10000,0 L5157.0314,0 C5133.13668,-7.7720762e-13 5110.03176,8.55607428 5091.9002,24.1189935 L5000,103 L5000,103 L4908.0998,24.1189935 C4889.96824,8.55607428 4866.86332,-4.73347595e-13 4842.9686,0 L0,0 L0,0 L0,122 Z" id="path-1"></path>
+        <filter x="-0.1%" y="-8.2%" width="100.2%" height="116.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="10" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.289650292   0 0 0 0 0.535977129   0 0 0 0 0.412813711  0 0 0 0.0859921329 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1-Copy-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dip" fill-rule="nonzero">
+            <use fill="#D0EADD" xlink:href="#path-1"></use>
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

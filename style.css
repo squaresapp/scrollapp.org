@@ -1,0 +1,168 @@
+
+SECTION.hero
+{
+	padding-bottom: 100px;
+}
+
+SECTION.hero .wordmark
+{
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+}
+
+SECTION.hero .wordmark DIV
+{
+	font-size: 30px;
+	font-weight: 900;
+	padding-left: 0.66em;
+}
+
+SECTION.hero .content
+{
+	text-align: center;
+}
+
+SECTION.hero H1
+{
+	padding-top: 140px;
+}
+
+SECTION.hero P
+{
+	padding: 30px 0 70px;
+	color: hsl(150, 38%, 75%);
+}
+
+SECTION.hero STRONG
+{
+	color: white;
+}
+
+SECTION.hero IMG.phone-flat
+{
+	margin-top: 100px;
+}
+
+SECTION.about
+{
+	padding-top: 100px;
+	text-align: center;
+}
+
+SECTION.about .space-100
+{
+	height: 100px;
+}
+
+SECTION.demo
+{
+	padding-top: 100px;
+	padding-bottom: 200px;
+	min-height: 1000px;
+	text-align: center;
+}
+
+SECTION.demo .image-wrapper
+{
+	width: fit-content;
+	margin: auto;
+	box-shadow: 0 10px 50px rgba(0, 0, 0, 1);
+	background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 100px;
+}
+
+SECTION.demo IMG
+{
+	display: block;
+}
+
+SECTION.demo .dip
+{
+	background-image: url("/images/dip-light-green.svg");
+}
+
+SECTION.open-source
+{
+	min-height: max(1000px, 70vh);
+	text-align: center;
+	background-color: hsl(151, 39%, 71%);
+	background-image: url("/images/bg.mountains.jpg");
+	background-size: 100% 900px;
+	background-repeat: no-repeat;
+}
+
+SECTION.open-source .content
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	width: fit-content;
+	height: fit-content;
+	transform: translateY(-40%);
+}
+
+SECTION.footer
+{
+	padding-top: 100px;
+	padding-bottom: 30px;
+	font-size: 20px;
+}
+
+SECTION.footer *
+{
+	font-size: inherit;
+}
+
+SECTION.footer .content
+{
+	max-width: 800px;
+	margin: auto;
+}
+
+SECTION.footer IMG
+{
+	max-width: 500px;
+	float: right;
+	z-index: 1;
+	border-radius: 6px;
+	box-shadow: 0 5px 7px rgba(0, 0, 0, 0.4);
+}
+
+SECTION.footer H2
+{
+	text-transform: uppercase;
+	font-weight: 700;
+	color: hsl(150, 22%, 74%);
+}
+
+SECTION.footer H2, SECTION.footer P
+{
+	line-height: 1.75;
+}
+
+SECTION.footer A
+{
+	text-decoration: none;
+	cursor: pointer;
+}
+
+SECTION.footer .blessing
+{
+	padding: 10px 0 50px;
+	clear: both;
+	text-align: right;
+}
+
+SECTION.footer .heart
+{
+	color: hsl(6, 80%, 58%);
+}

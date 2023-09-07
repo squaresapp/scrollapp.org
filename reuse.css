@@ -1,0 +1,202 @@
+H1
+{
+	padding-bottom: 0.5em;
+	font-size: 70px;
+	font-weight: 900;
+	letter-spacing: -0.02em;
+	line-height: 1.25;
+}
+
+H1 STRONG
+{
+	font-weight: inherit;
+}
+
+P
+{
+	font-size: 30px;
+}
+
+INPUT
+{
+	-webkit-appearance: none;
+}
+
+BUTTON
+{
+	cursor: pointer;
+}
+
+SECTION
+{
+	overflow: hidden;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+FORM
+{
+	margin: 0 auto;
+	max-width: 600px;
+}	
+
+FORM INPUT, FORM BUTTON
+{
+	margin-bottom: 15px;
+	display: block;
+	width: 100%;
+	padding: 25px 15px;
+	border: 0;
+	border-radius: 4px;
+	font-size: 30px;
+}
+	
+FORM INPUT
+{
+	color: black;
+	outline: 0;
+}
+	
+FORM INPUT::placeholder
+{
+	font-style: italic;
+	color: hsl(150, 25%, 40%);
+}
+
+FORM INPUT::-webkit-input-placeholder
+{
+	font-style: italic;
+	color: hsl(150, 25%, 40%);
+}
+	
+FORM BUTTON
+{
+	background-color: hsl(150, 60%, 35%);
+	background-image: linear-gradient(180deg, hsl(150, 60%, 25%), hsl(150, 60%, 35%));
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+	font-weight: 900;
+	color: white;
+}
+
+.dip
+{
+	pointer-events: none;
+}
+
+.dark
+{
+	background-color: hsl(150, 60, 8);
+	background-image: linear-gradient(180deg, hsl(150, 60%, 8%), hsl(150, 60%, 14%));
+	color: white;
+}
+
+.dark .dip
+{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 130px;
+	background-image: url("/images/dip-white.svg");
+	background-repeat: no-repeat;
+	background-position: 50% 100%;
+}
+
+.dark FORM:before
+{
+	content: "";
+	top: 70%;
+	left: 50%;
+	right: 30%;
+	bottom: 50%;
+	border-radius: 100%;
+	box-shadow: 0 0 400px 150px hsla(150, 40%, 50%, 0.25);
+}
+	
+.dark FORM INPUT
+{
+	background-image: linear-gradient(
+		180deg, 
+		hsl(150, 55%, 100%),
+		hsl(150, 55%, 90%));
+	
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+	
+.dark FORM BUTTON
+{
+	box-shadow:
+		inset 0 1px 1px hsla(150, 50%, 70%, 0.33),
+		0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.light
+{
+	overflow: hidden;
+	padding-bottom: 222px;
+	background-image: linear-gradient(
+		180deg,
+		hsl(150, 75%, 100%),
+		hsl(150, 75%, 97%));
+}
+
+.light .dip
+{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 130px;
+	background-image: url("/images/dip-green.svg");
+	background-repeat: no-repeat;
+	background-position: 50% 100%;
+}
+
+.light:before, .light:after
+{
+	z-index: -1;
+	border-radius: 100%;
+	background-color: hsla(150, 70%, 40%, 0.5);
+	filter: blur(150px);
+}
+
+.light:before
+{
+	content: "";
+	position: absolute;
+	top: 80%;
+	right: 80%;
+	bottom: -10%;
+	left: -10%;
+}
+
+.light:after
+{
+	content: "";
+	position: absolute;
+	top: 80%;
+	right: -10%;
+	bottom: -10%;
+	left: 80%;
+}
+
+.light H1
+{
+	color: hsl(0, 0%, 34%);
+}
+
+.light H1 STRONG
+{
+	color: hsl(150, 47%, 28%);
+}
+
+.light FORM INPUT
+{
+	background-color: white;
+	box-shadow: 0 10px 10px 1px hsl(150, 30%, 75%);
+}
+	
+.light FORM BUTTON
+{
+	box-shadow: 0 4px 8px 3px rgba(255, 255, 255, 0.8);
+}

@@ -1,0 +1,79 @@
+*
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	word-wrap: break-word;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-margin-collapse: separate;
+	-webkit-font-smoothing: antialiased;
+	line-height: 1.5;
+}
+HTML
+{
+	font-family: "Lato";
+}
+HTML *
+{
+	position: relative;
+	z-index: 0;
+}
+DIV, SECTION, H1, P, TABLE, A, FORM
+{
+	border-top-width: 0;
+	border-right-width: 0;
+	border-bottom-width: 0;
+	border-left-width: 0;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+}
+INPUT, BUTTON, TABLE, TR, TD, LEGEND, FIELDSET
+{
+	font-size: 1em;
+	font-weight: inherit;
+}
+IMG, VIDEO, OBJECT
+{
+	border-width: 0;
+}
+TABLE, DIV, SECTION
+{
+	table-layout: fixed;
+	border-spacing: 0;
+}
+THEAD, TBODY, TFOOT, TR
+{
+	position: static;
+}
+THEAD, TBODY, TFOOT, TR, TH, TD, BR
+{
+	text-align: left;
+}
+H1, H2, H3, H4, H5, H6, TH
+{
+	font-weight: inherit;
+}
+CAPTION, CODE, KBD, PRE, SAMP, TT, INPUT, TEXTAREA, SELECT, BUTTON
+{
+	font-family: inherit;
+}
+INPUT[type="button"], INPUT[type="image"], BUTTON
+{
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+A, TEXTAREA, INPUT
+{
+	font-size: inherit;
+	color: inherit;
+}
