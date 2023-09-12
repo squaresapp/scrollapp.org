@@ -61,6 +61,18 @@ SECTION.about
 	text-align: center;
 }
 
+SECTION.about .block
+{
+	width: fit-content;
+	margin: auto;
+	padding: 3em;
+	border-radius: 30px;
+	background: linear-gradient(
+		0deg,
+		hsl(150, 60%, 90%),
+		hsl(150, 60%, 98%));
+}
+
 SECTION.about .space-100
 {
 	height: 100px;
