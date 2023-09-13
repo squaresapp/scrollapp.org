@@ -141,7 +141,7 @@ SECTION.footer .content
 	margin: auto;
 }
 
-SECTION.footer IMG
+SECTION.footer IMG.office
 {
 	max-width: 500px;
 	float: right;
@@ -168,10 +168,31 @@ SECTION.footer A
 	cursor: pointer;
 }
 
+SECTION.footer .bottom
+{
+	display: flex;
+	clear: both;
+	padding: 10px 0 50px;
+}
+
+SECTION.footer .bottom > *
+{
+	flex: 1 0;
+}
+
+SECTION.footer .social
+{
+	padding-top: 50px;
+}
+
+SECTION.footer .social IMG
+{
+	width: 50px;
+	margin-right: 20px;
+}
+
 SECTION.footer .blessing
 {
-	padding: 10px 0 50px;
-	clear: both;
 	text-align: right;
 }
 
