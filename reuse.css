@@ -202,3 +202,8 @@ FORM BUTTON
 {
 	box-shadow: 0 4px 8px 3px rgba(255, 255, 255, 0.8);
 }
+
+.space-100
+{
+	height: 100px;
+}
