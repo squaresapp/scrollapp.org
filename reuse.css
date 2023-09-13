@@ -105,12 +105,14 @@ FORM BUTTON
 .dark FORM:before
 {
 	content: "";
-	top: 70%;
-	left: 50%;
-	right: 30%;
-	bottom: 50%;
+	position: absolute;
+	top: 20%;
+	left: 20%;
+	right: 20%;
+	bottom: 20%;
 	border-radius: 100%;
 	box-shadow: 0 0 400px 150px hsla(150, 40%, 50%, 0.25);
+	background-color: hsla(150, 40%, 50%, 0.25);
 }
 	
 .dark FORM INPUT
