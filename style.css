@@ -73,11 +73,6 @@ SECTION.about .block
 		hsl(150, 60%, 98%));
 }
 
-SECTION.about .space-100
-{
-	height: 100px;
-}
-
 SECTION.demo
 {
 	padding-top: 100px;
