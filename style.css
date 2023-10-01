@@ -200,3 +200,19 @@ SECTION.footer .heart
 {
 	color: hsl(6, 80%, 58%);
 }
+
+/* EmailOctopus */
+
+.text-center:last-of-type
+{
+	display: none;
+}
+
+.eo-container
+{
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: -99vw;
+	pointer-events: none;
+}

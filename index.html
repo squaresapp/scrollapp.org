@@ -24,6 +24,10 @@
 <link rel="stylesheet" type="text/css" href="reuse.css">
 <link rel="stylesheet" type="text/css" href="style.css">
 
+<div class="eo-container">
+	<script async src="https://eocampaign1.com/form/c8c27b40-ad3f-11ed-8287-3f7fc891fb52.js" data-form="c8c27b40-ad3f-11ed-8287-3f7fc891fb52"></script>
+</div>
+
 <section class="dark hero">
 	<div class="wordmark">
 		<img src="/icon/icon-white-transparent.svg">
@@ -142,3 +146,31 @@
 		</div>
 	</div>
 </section>
+
+<script>
+setTimeout(() =>
+{
+	const forms = document.querySelectorAll("SECTION FORM");
+	for (const form of forms)
+	{
+		form.addEventListener("submit", ev =>
+		{
+			const eoContainer = document.querySelector(".eo-container");
+			const eoForm = eoContainer.querySelector("FORM");
+			const eoEmail = eoForm.querySelector("INPUT[type=email]");
+			const eoSubmit = eoForm.querySelector("INPUT[type=submit]");
+			const inEmail = form.querySelector("INPUT[type=email]");
+			eoEmail.value = inEmail.value;
+			eoSubmit.click();
+			ev.preventDefault();
+			
+			new MutationObserver(records =>
+			{
+				if (eoContainer.getElementsByClassName("emailoctopus-success-message").length > 0)
+					window.location.href = "/subscribed.html";
+				
+			}).observe(eoContainer, { childList: true, subtree: true, characterData: true });
+		});
+	}
+});
+</script>
