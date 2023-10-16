@@ -60,7 +60,7 @@ SECTION.hero H1:before, SECTION.hero P:before
 	right: 0;
 	bottom: 0;
 	border-radius: 100px;
-	box-shadow: 0 50px 400px 150px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 50px 200px 50px rgba(0, 0, 0, 0.2);
 	background-color: rgba(0, 0, 0, 0.2);
 	z-index: -1;
 }
@@ -68,6 +68,7 @@ SECTION.hero H1:before, SECTION.hero P:before
 SECTION.hero H1
 {
 	padding-top: 140px;
+	z-index: 1;
 }
 
 SECTION.hero P
