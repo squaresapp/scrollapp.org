@@ -153,7 +153,8 @@
 </section>
 
 <script>
-setTimeout(() =>
+
+window.addEventListener("DOMContentLoaded", () => setTimeout(() =>
 {
 	const fn = () =>
 	{
@@ -162,6 +163,12 @@ setTimeout(() =>
 		window.removeEventListener("scroll", fn);
 	};
 	window.addEventListener("scroll", fn);
+},
+1000));
+
+setTimeout(() =>
+{
+	
 	
 	const forms = document.querySelectorAll("SECTION FORM");
 	for (const form of forms)
