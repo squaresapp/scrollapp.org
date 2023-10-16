@@ -103,7 +103,7 @@
 		<strong>ad</strong> & <strong>tracker free</strong>, and <strong>non-addictive</strong>.
 	</p>
 	<div class="iphone-wrapper">
-		<video id="video" muted autoplay loop>
+		<video id="video" playsinline muted autoplay loop>
 			<source src="/images/screendemo.mp4" type="video/mp4">
 		</video>
 	</div>
@@ -154,22 +154,8 @@
 
 <script>
 
-window.addEventListener("DOMContentLoaded", () => setTimeout(() =>
-{
-	const fn = () =>
-	{
-		const video = document.getElementById("video");
-		video.play();
-		window.removeEventListener("scroll", fn);
-	};
-	window.addEventListener("scroll", fn);
-},
-1000));
-
 setTimeout(() =>
 {
-	
-	
 	const forms = document.querySelectorAll("SECTION FORM");
 	for (const form of forms)
 	{
