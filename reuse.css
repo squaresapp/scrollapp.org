@@ -111,8 +111,8 @@ FORM BUTTON
 	right: 20%;
 	bottom: 20%;
 	border-radius: 100%;
-	box-shadow: 0 0 400px 150px hsla(150, 40%, 50%, 0.25);
-	background-color: hsla(150, 40%, 50%, 0.25);
+	box-shadow: 0 50px 400px 150px rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.5);
 }
 	
 .dark FORM INPUT
