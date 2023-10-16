@@ -155,8 +155,13 @@
 <script>
 setTimeout(() =>
 {
-	const video = document.getElementById("video");
-	video.play();
+	const fn = () =>
+	{
+		const video = document.getElementById("video");
+		video.play();
+		window.removeEventListener("scroll", fn);
+	};
+	window.addEventListener("scroll", fn);
 	
 	const forms = document.querySelectorAll("SECTION FORM");
 	for (const form of forms)
