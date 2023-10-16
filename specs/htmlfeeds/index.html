@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<title>HTML Feeds Specification 1.0 Draft 1</title>
+<link rel="stylesheet" type="text/css" href="spec.css">
+<body class="draft">
+<div class="head">
+	<h1>HTML Feeds Specification 1.0 Draft 1</h1>
+	<dl>
+		<dt>This version:</dt>
+		<dd>
+			<a href="https://www.scrollapp.org/specs/htmlfeeds">https://www.scrollapp.org/specs/htmlfeeds</a>
+		</dd>
+		<dt>Editors:</dt>
+		<dd>
+			<a href="https://www.heropaul.com/">Paul Gordon</a> &lt; <a href="mailto:paul@heropaul.com">paul@heropaul.com</a>&gt;
+		</dd>
+	</dl>
+	<p class="copyright">&copy; Copyright 2023 Paul Gordon.</p>
+</div>
+
+<hr>
+
+<h2 id="abstract">Abstract</h2>
+<p>
+	HTML Feeds are a way of using HTML, CSS, and the existing HTTP protocol in order to achieve self-hosted media syndication using nothing other than a boring static HTTP file server. HTML feeds introduce almost nothing that is new. This is <b>by-design</b>. 
+</p>
+<p>
+	RSS was a flawed technology. However, it served as a proof of concept that self-hosted media syndication is possible without complex infrastructure. HTML Feeds build upon this idea. In some respects, HTML feeds can be thought of as <i>RSS done right</i>. 
+</p>
+<h2 id="status">Status of This Document</h2>
+<p>
+	This is a working draft. Comments are welcome by filing an issue on the <a href="http://www.aquarionics.com/misc/blogite/">GitHub issues tracker</a>. 
+</p>
+<h3>Disclaimer</h3>
+<p>
+	This information is provided in good faith, but no warranty can be made for its accuracy. Opinions expressed are entirely those of the editors and cannot be taken to represent views past, present or future of our employers.
+</p>
+
+<h3>License</h3>
+
+<p>
+	This document may be used under the terms of the <a href="https://creativecommons.org/licenses/by-nd/4.0/deed.en">BY-ND 4.0 Creative Commons License</a>.
+</p>
+
+<p>If you wish to translate this document or use it in some other way, please contact the authors.</p>
+
+<h2 id="languages">Available languages</h2>
+<p>The English version of this specification is the only normative version.</p>
+
+<h2 id="TOC">Table of Contents</h2>
+<ul>
+	<li><a href="#TOC1">1. Introduction</a></li>
+	<li><a href="#TOC2">2. HTML Post Format</a></li>
+	<li><a href="#TOC21">2.1. Ignored HTML Structure</a></li>
+	<li><a href="#TOC3">3. Feed Text File Format</a></li>
+	<li><a href="#TOC31">3.1. Polling For Updates</a></li>
+</ul>
+
+<h2 id="TOC1">1. Introduction</h2>
+<p>
+	An HTML feed is just a series of HTML pages, refered to as *HTML posts*. In an HTML post, there's no <code>&lt;body></code> section. There's just an optional <code>&lt;head></code> section followed by a series of top-level <code>&lt;section></code> elements. HTML feed pages render without issue in a browser.
+</p>
+<p>
+Each top-level <code>&lt;section></code> element is rendered as a separate screen whose display height is equal to one full-length height of the containing browser window. HTML posts therefore present like slides of a presentation. Each <code>&lt;section></code> is self-contained. CSS overflowing is not allowed.
+</p>
+<p>
+The first <code>&lt;section></code> of an HTML post is called the <i>Lead</i>. Readers will cherry-pick the lead out of each HTML post, and organize them into a grid. This is how the feed user interface is constructed. Users click on the lead for the post they want to view, to reveal the other sections.
+</p>
+<p>
+Syndication is done by polling a text file for changes to the HTTP <code>Content-Length</code> header. The text file contains a list of URIs that point to each post in the feed. Users subscribe to HTML feeds by adding the URL of the HTML feed text file to their reader, such as <code>www.example.com/index.txt</code>. 
+</p>
+
+<h2 id="TOC2">2. HTML Post Format</h2>
+<p>
+	The code block below describes the basic structure of an HTML post, as it is recognized by an HTML feed reader:
+</p>
+<pre>
+&lt;!DOCTYPE html&gt;
+
+&lt;!--
+The user's name is extracted from the meta author tag.
+This would be displayed in the identity area of the feed reader.
+--&gt;
+&lt;meta name=&quot;author&quot; content=&quot;Elon Musk&quot;&gt;
+
+&lt;!--
+The users's bio is extracted from the meta description tag.
+This would also be displayed in the identity area of the feed reader.
+--&gt;
+&lt;meta name=&quot;description&quot; content=&quot;Founder of Tesla, SpaceX, and a few other things.&quot;&gt;
+
+&lt;!--
+Avatars for the feed are rendered within the feed reader
+by inspected the standard shortcut icon tag.
+--&gt;
+&lt;link rel=&quot;icon&quot; type=&quot;image/png&quot; href=&quot;avatar.png&quot;&gt;
+
+&lt;!--
+CSS files can be drawn in, and the styling is applied to
+all sections as authors would expect.
+--&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style.css&quot;&gt;
+
+&lt;section&gt;
+	&lt;p&gt;
+		This section is the lead. HTML and CSS content in here will be
+		cherry picked and displayed on the user's post grid.
+	&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+	&lt;p&gt;
+		This is another section that is buried. In order to reveal this,
+		the user would need to have clicked on the lead in the grid.
+	&lt;/p&gt;
+&lt;/section&gt;
+</pre>
+
+<h3 id="TOC21">Ignored HTML Structure</h3>
+<p>
+	In order to streamline the user experience of the reader, and to improve security, HTML Feed readers ignore the HTML tags listed below:
+</p>
+<ol>
+	<li><code>&lt;script></code></li>
+	<li><code>&lt;frame></code></li>
+	<li><code>&lt;frameset></code></li>
+	<li><code>&lt;iframe></code></li>
+	<li><code>&lt;portal></code></li>
+</ol>
+<p>
+	Additionally any HTML attribute that starts with `on`, such the as `onclick` are stripped before being rendered. JavaScript does not execute within the context of a reader. Some readers may allow white-list of trusted scripts, but won't be part of any official specification. 
+</p>
+
+<h2 id="TOC3">3. Feed Text File Format</h2>
+<p>
+	A feed text file is a line-delimited text file, where each line describes a unique URI to a separate HTML post. These text files should be served with the <code>text/uri-list</code> MIME type.
+</p>
+<p>
+	Lines that start with a # sign are comments.
+</p>
+<p>
+	Lines that are empty or only contain whitespace are ignored.
+</p>
+<p>
+	Lines that contain relative URIs are interpreted as references to HTML posts that are part of the feed. Relative URIs are interpreted as relative to the URL of the folder where the feed text file was downloaded.
+</p>
+<p>
+	If the URL is fully-qualified and points to a URL on a different domain, this is interpreted by the reader as as a repost, and the reader will indicate this within it's user interface.
+</p>
+<p>
+	An example feed text file is below:
+</p>
+<pre>
+# Posts
+/post-1
+/post-2
+/post 3
+
+# Reposts
+https://www.myfriendsfeed.com/post-a
+https://www.myfriendsfeed.com/post-b
+</pre>
+
+<h3 id="TOC31">3.1. Polling For Updates</h2>
+<p>
+	HTML feed readers periodically issue an HTTP <code>HEAD</code> request to the URL of the feed text file. The reader compares the returned HTTP <code>Content-Length</code> header values from the last poll to determine if a full re-download of the index is necessary.
+</p>
+<p>
+Feed readers should avoid using the <code>Last-Modified</code> header. Readers should time-stamp posts based on the time when they are discovered, rather than relying on declarations made by the server. These header values are easily modified, and if the reader is using chronological ordering of posts, this could incentivize manipulation.
+</p>
+<p>
+When a reader detects an update to a feed text file, it will redownloads the entire text file, parses it, and adds any newly discovered URLs to its feed, and removes any posts from the feed that where removed from the text file. Third party feed management software may use this functionality to achieve the ephemeral posting functionality such as that found in SnapChat and Instagram Stories.
+</p>
+<p class="note">
+Readers can deal with excessive posting using their own internal mechanisms. For example, multiple posts discovered too closely together in time could be merged into a single tile on the feed grid. Other posts could be omitted all together.
+</p>
+
+<!--
+<h2 id="TOCA">A. References</h2>
+<dl>
+	<dt id="refsRFC2119">[RFC 2119]</dt>
+	<dd>
+		<cite>
+			<a href="http://www.ietf.org/rfc/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>
+		</cite>, S. Bradner. IETF, March 1997. RFC 2119 is available at http://www.ietf.org/rfc/rfc2119
+	</dd>
+	<dt id="refsRFC2396">[RFC 2396]</dt>
+	<dd>
+		<cite>
+			<a href="http://www.ietf.org/rfc/rfc2396">Uniform Resource Identifiers (URI): Generic Syntax</a>
+		</cite>, T. Berners-Lee, R. Fielding, L. Masinter. IETF, August 1998. RFC 2396 is available at http://www.ietf.org/rfc/rfc2396
+	</dd>
+	<dt id="refsRFC3066">[RFC3066]</dt>
+	<dd>
+		<cite>
+			<a href="http://www.ietf.org/rfc/rfc3066">Tags for the Identification of Languages</a>
+		</cite>, H. Alvestrand. IETF, January 2001. RFC3066 is available at http://www.ietf.org/rfc/rfc3066
+	</dd>
+</dl>
+-->
+
+</body>
