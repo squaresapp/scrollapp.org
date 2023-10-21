@@ -53,6 +53,7 @@
 	<li><a href="#TOC21">2.1. Ignored HTML Structure</a></li>
 	<li><a href="#TOC3">3. Feed Text File Format</a></li>
 	<li><a href="#TOC31">3.1. Polling For Updates</a></li>
+	<li><a href="#TOC4">4. Following Feeds</a></li>
 </ul>
 
 <h2 id="TOC1">1. Introduction</h2>
@@ -172,6 +173,17 @@ When a reader detects an update to a feed text file, it will redownloads the ent
 </p>
 <p class="note">
 Readers can deal with excessive posting using their own internal mechanisms. For example, multiple posts discovered too closely together in time could be merged into a single tile on the feed grid. Other posts could be omitted all together.
+</p>
+
+<h3 id="TOC4">4. Following Feeds</h2>
+<p>
+	Reader apps should be configured within their respective host operating systems to respond to handle requests from the <code>html://</code> URI scheme. The current draft of this specification defines only a single function for URIs in this format&#8212;signaling to the reader app to follow the feed at the specified URL:
+</p>
+<pre>
+html://follow?https://www.example.com/feed/index.txt
+</pre>
+<p>
+	Clicking on this link from a web browser or other source should activate the installed HTML Feed reader app, which should being following updates to the feed at <code>https://www.example.com/feed/index.txt</code>.
 </p>
 
 <!--
