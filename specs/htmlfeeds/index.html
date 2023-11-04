@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <title>HTML Feeds Specification 1.0 Draft 1</title>
 <link rel="stylesheet" type="text/css" href="spec.css">
+<script>
+function writeEmail()
+{
+	var val = "paul" + String.fromCharCode(64) + "heropaul.com";
+	document.write("<a href=" + "mail" + "to:" + val + ">" + val + "</a>");
+}
+</script>
 <body class="draft">
 <div class="head">
 	<h1>HTML Feeds Specification 1.0 Draft 1</h1>
@@ -11,7 +18,7 @@
 		</dd>
 		<dt>Editors:</dt>
 		<dd>
-			<a href="https://www.heropaul.com/">Paul Gordon</a> &lt; <a href="mailto:paul@heropaul.com">paul@heropaul.com</a>&gt;
+			<a href="https://www.heropaul.com/">Paul Gordon</a> &lt;<script>writeEmail()</script>&gt;
 		</dd>
 	</dl>
 	<p class="copyright">&copy; Copyright 2023 Paul Gordon.</p>
