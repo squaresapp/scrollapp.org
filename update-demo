@@ -1,0 +1,6 @@
+#!/bin/sh
+rm -rf ./Scroll-Webdemo
+git clone https://github.com/HTMLFeeds/Scroll-Webdemo
+mv ./Scroll-Webdemo ./demo
+rm -rf ./demo/.git
+rm -rf ./demo/.gitignore
