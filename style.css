@@ -129,10 +129,13 @@ SECTION.demo .iphone-wrapper:before
 	background-color: hsl(180, 0%, 30%);
 }
 
-SECTION.demo VIDEO
+SECTION.demo IFRAME
 {
 	width: 428px;
-	height: 900px;
+	height: 830px;
+	margin-bottom: 30px;
+	border: 0;
+	border-radius: 50px;
 }
 
 SECTION.demo IMG

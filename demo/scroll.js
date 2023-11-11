@@ -18,8 +18,8 @@ if (typeof ANDROID === "undefined")
     Object.assign(globalThis, { ANDROID: navigator.userAgent.includes("Android") });
 if (typeof CAPACITOR === "undefined")
     Object.assign(globalThis, { CAPACITOR: typeof Capacitor === "object" });
-if (typeof WEB === "undefined")
-    Object.assign(globalThis, { WEB: !ELECTRON && !TAURI && !CAPACITOR });
+if (typeof DEMO === "undefined")
+    Object.assign(globalThis, { DEMO: !ELECTRON && !TAURI && !CAPACITOR && window.location.pathname.indexOf("demo") > -1 });
 if (typeof SIMULATOR === "undefined")
     Object.assign(globalThis, { SIMULATOR: false });
 if (ELECTRON) {
@@ -50,7 +50,7 @@ var ScrollApp;
             FilaTauri.use();
         else if (CAPACITOR)
             FilaCapacitor.use();
-        else if (WEB)
+        else if (DEMO)
             FilaKeyva.use();
         const g = globalThis;
         if (CAPACITOR) {
@@ -67,10 +67,10 @@ var ScrollApp;
             const dataFolder = await ScrollApp.Util.getDataFolder();
             if (!await dataFolder.exists())
                 await dataFolder.writeDirectory();
-            await ScrollApp.Data.clear();
             await ScrollApp.runDataInitializer(ScrollApp.feedsForDebug);
         }
-        if (!DEBUG && WEB) {
+        else if (DEMO) {
+            await ScrollApp.Data.clear();
             await ScrollApp.runDataInitializer(ScrollApp.feedsForWeb);
         }
         ScrollApp.appendCssReset();
@@ -103,7 +103,7 @@ var ScrollApp;
 var ScrollApp;
 (function (ScrollApp) {
     //@ts-ignore
-    if (!WEB)
+    if (!DEMO)
         return;
     ScrollApp.feedsForWeb = [
         "https://raw.githubusercontent.com/HTMLFeeds/Examples/main/raccoons/index.txt",
@@ -516,9 +516,6 @@ var ScrollApp;
             const text = keys.map(k => k + "\n").join("");
             await fila.writeText(text, { append: true });
         }
-        //@ts-ignore
-        if (!DEBUG)
-            return;
         /**
          * Deletes all data in the data folder.
          * Intended only for debugging purposes.
@@ -771,7 +768,7 @@ var ScrollApp;
                     FilaCapacitor.directory.data;
                 return Fila.new(path);
             }
-            else if (WEB) {
+            else if (DEMO) {
                 return Fila.new();
             }
             throw new Error("Not implemented");
@@ -1038,10 +1035,10 @@ var ScrollApp;
                 this._height = this.head.offsetHeight;
                 ScrollApp.Resize.watch(this.head, (w, h) => [this._width, this._height] = [w, h]);
                 this.tryAppendPosters(3);
-            }), CAPACITOR && [
+            }), (CAPACITOR || DEMO) && [
                 ScrollApp.UI.cornerAbsolute("tl"),
                 ScrollApp.UI.cornerAbsolute("tr"),
-                this.cornersElement = hot.span({
+                this.cornersElement = hot.span("corners-element", {
                     display: "block",
                     position: "absolute",
                     pointerEvents: "none",
@@ -1233,7 +1230,7 @@ var ScrollApp;
             }
             if (canContinue && isNearingBottom)
                 this.tryAppendPosters(1);
-            if (CAPACITOR) {
+            if (CAPACITOR || DEMO) {
                 const query = this.head.getElementsByClassName("has-top" /* Class.hasCssTop */);
                 if (query.length > 0) {
                     const last = query.item(query.length - 1);
@@ -1401,7 +1398,7 @@ var ScrollApp;
             this.feed = feed;
             if (sections.length < 1)
                 throw new Error("Must have at least one section.");
-            if (CAPACITOR) {
+            if (CAPACITOR || DEMO) {
                 hot.get(sections[0])({
                     borderTopLeftRadius: ScrollApp.Style.borderRadiusLarge + " !",
                     borderTopRightRadius: ScrollApp.Style.borderRadiusLarge + " !",
@@ -1436,7 +1433,7 @@ var ScrollApp;
                 marginBottom: "10px",
                 backgroundColor: "rgba(128, 128, 128, 0.33)",
                 borderRadius: ScrollApp.Style.borderRadiusLarge,
-            }, ScrollApp.Style.backdropBlur(8), snap), CAPACITOR && hot.div("corners-container", {
+            }, ScrollApp.Style.backdropBlur(8), snap), (CAPACITOR || DEMO) && hot.div("corners-container", {
                 position: "absolute",
                 left: 0,
                 right: 0,
@@ -1751,7 +1748,9 @@ var ScrollApp;
                 position: "absolute",
                 left: 0,
                 right: 0,
-                bottom: CAPACITOR ? "105px" : "15px",
+                bottom: CAPACITOR ? "105px" :
+                    DEMO ? 0 :
+                        "15px",
                 margin: "auto",
             });
             this.head.append(dotsHat.head);
@@ -1820,18 +1819,19 @@ var ScrollApp;
         /** */
         constructor() {
             this.grid = new ScrollApp.GridHat();
+            const borderRadius = (CAPACITOR || DEMO) ? "30px" : 0;
             this.head = hot.div({
-                height: IOS || ANDROID ? "177.7777vw" : "100%",
+                height: (CAPACITOR || DEMO) ? "177.7777vw" : "100%",
                 alignSelf: "center",
-                borderRadius: isTouch ? "30px" : 0,
+                borderRadius,
                 overflow: "hidden",
             }, this.gridContainer = hot.div("grid-container", {
                 height: "100%",
-                borderRadius: isTouch ? "30px" : 0,
+                borderRadius,
                 overflow: "hidden",
                 transitionDuration,
                 transitionProperty: "transform, opacity",
-            }), !CAPACITOR && hot.div(Dock.bottomRight(10), {
+            }), !(CAPACITOR || DEMO) && hot.div(Dock.bottomRight(10), {
                 zIndex: 1,
                 color: "white",
                 borderRadius: "100%",
