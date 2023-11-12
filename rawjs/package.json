@@ -1,0 +1,19 @@
+{
+	"name": "raw.js.org",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"serve": ""
+	},
+	"repository": {
+		"type": "git",
+ 		"url": "git+https://github.com/scrollapp/raw.js.org.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/scrollapp/raw.js.org/issues"
+	},
+	"homepage": "https://github.com/scrollapp/raw.js.org#readme"
+}

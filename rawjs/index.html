@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<title>RawJS</title>
+<link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/icon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/icon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
+<link rel="manifest" href="/icon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+
+<style>
+SECTION *
+{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	font-weight: 400;
+	font-size: inherit;
+	line-height: 1.5;
+}
+HTML
+{
+	font-family: Inter;
+}
+BODY
+{
+	padding-bottom: 100px;
+}
+H2
+{
+	font-size: 25px;
+	font-weight: 700;
+}
+* + H2
+{
+	margin-top: 1em;
+}
+UL
+{
+	padding-left: 1em;
+}
+* + UL
+{
+	margin-top: 1em;
+}
+P, LI
+{
+	font-size: 20px;
+}
+* + P
+{
+	margin-top: 20px;
+}
+SECTION.s1
+{
+	text-align: center;
+	padding: 100px;
+}
+SECTION.s1 IMG
+{
+	width: 100%;
+	max-width: 500px;
+}
+SECTION.s1 H1
+{
+	font-size: 160px;
+	font-weight: 900;
+	line-height: 1.25;
+}
+SECTION.s1 P
+{
+	font-size: 40px;
+	max-width: 600px;
+	letter-spacing: -0.1vmin;
+	margin: auto;
+}
+SECTION.s1 SMALL
+{
+	display: block;
+	margin: 4vmin;
+	font-size: 15px;
+}
+SECTION.s2
+{
+	max-width: 600px;
+	margin: auto;
+}
+</style>
+
+<section class="s1">
+	<img src="steak.png">
+	<h1>RawJS</h1>
+	<p>For those whose badassery shall not be impeded by frameworks.</p>
+</section>
+
+<section class="s2">
+	<p>
+		RawJS an ultra-ergonomic HTML element construction library that is designed to facilitate the construction of complex user interfaces with in a zero-magic, vanilla TypeScript style. Call functions. Create HTMLElement objects with event bindings and CSS styling attached. That's it.
+	</p>
+	<p>
+		It turns out, this is all you need to create complex interactive UIs. You don't need React, Vue, Angular, Svelte, or any of the others. These things are complicated UI sub-systems that run around behind the scenes and do a bunch of weird magic for you in order to keep your view in sync with your data. You have to do things their way, otherwise, the magic won't work.
+	</p>
+	<p>
+		Frameworks tend to do a lot of reinventing of what you can already do in JavaScript. By making controllers that are just plain TypeScript classes, and using the DOM directly to store your view state, you can cut complexities associated with model/view synchronization. Some devs will shudder at this. But this technique can vastly reduce total project complexity. Code gets easier to debug. WTF moments reduce in frequency. Total project risk goes down.
+	</p>
+	
+	<h2>Features</h2>
+	<ul>
+		<li>No learning curve (assuming you know JavaScript and how to work the DOM).</li>
+		<li>No props / state / special controller classes that need to be inherited.</li>
+		<li>No weird or unpredictable framework "magic".</li>
+		<li>No bloat. The whole library is only 2.3KB.</li>
+		<li>No performance overhead.</li>
+		<li>No virtual DOM.</li>
+		<li>No JSX.</li>
+		<li>No external CSS / SASS / LESS files needed. Write your CSS in TypeScript, and get all the benefits of styling becoming just another part of the code.</li>
+		<li>No more asking StackOverflow: "How do I do X in framework Y?". RawJS gives it to you raw. It's just you and the DOM. Do whatever makes sense.</li>
+	</ul>
+	<p>
+		Also:
+	</p>
+	<ul>
+		<li>RawJS is being used in production (to build <a href="https://www.scrollapp.org">Scroll</a>).</li>
+		<li>Many years in the making. Has passed through many different design variations.</li>
+		<li>Works as a <code>&lt;script&gt;</code> include, as a module, or as a <code>require()</code>.</li>
+		<li>Works in Node.js / Deno for server-side HTML generation.</li>
+	</ul>
+</section>
+
+<style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/scrollapp/rawjs">Fork me on GitHub</a></span>
