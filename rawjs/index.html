@@ -11,6 +11,7 @@
 <script src="/lib/highlight.min.js"></script>
 <script src="/lib/highlight.typescript.min.js"></script>
 <script src="/lib/highlight.xml.min.js"></script>
+<script src="https://cdn.counter.dev/script.js" data-id="871c3218-9970-4271-8cea-bc8815a1774a" data-utcoffset="-5" async></script>
 
 <style>
 *
@@ -150,6 +151,7 @@ SECTION, .examples > DIV
 }
 .examples
 {
+	background-color: #1A1A1A;
 	max-width: 100%;
 }
 .examples .buttons
@@ -181,6 +183,17 @@ CODE
 {
 	font-family: "Fira Code";
 }
+.instructions
+{
+	
+}
+.instructions CODE
+{
+	display: block;
+	background-color: #1A1A1A;
+	padding: 1em;
+	border-radius: 15px;
+}
 </style>
 
 <a class="github-corner" href="https://github.com/scrollapp/rawjs">
@@ -188,7 +201,11 @@ CODE
 </a>
 
 <section>
-	<h1 class="red size-150" style="padding: 100px 0">RawJS</h1>
+	<br>
+	<h1 class="red space-100 size-150" style="line-height: 1;">RawJS</h1>
+	<div class="instructions pad-50">
+		<code>npm install @scrollapp/rawjs</code>
+	</div>
 	<h2 class="size-60">
 		A library that makes<br>
 		<span class="green">document.createElement()</span><br>
@@ -206,9 +223,9 @@ CODE
 </section>
 
 <section class="space-400">
-	<h2 class="size-60">
+	<h2 class="size-90">
 		<span class="red">RawJS</span> isn&#39;t so much a
-		<span class="green">library</span> as it is a <span class="blue">mindset</span>.
+		<span class="blue">library</span> as it is a <span class="blue">mindset</span>.
 	</h2>
 	<p class="pad-50">
 		At <b>2.3 KB</b>, RawJS doesn&#39;t do much. What RawJS really does is
@@ -228,7 +245,7 @@ CODE
 	</h2>
 </section>
 
-<section class="examples space-400 pad-100" style="background-color: #1A1A1A;"><div>
+<section class="examples space-400 pad-100"><div>
 	<h2 class="size-80">Examples</h2>
 	<div id="examples-lessons">
 		<div>
