@@ -80,3 +80,16 @@
 .hljs-ln-code {
 	padding-left: 10px;
 }
+
+.hljs-tag {
+	color: hsl(213, 40%, 60%);
+}
+.hljs-tag .hljs-name {
+	color: hsl(213, 40%, 60%);
+}
+.hljs-tag .hljs-attr {
+	color: hsl(213, 40%, 60%);
+}
+.hljs-tag .hljs-string {
+	color: white;
+}
