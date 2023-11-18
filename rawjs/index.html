@@ -1,143 +1,801 @@
 <!DOCTYPE html>
-<title>RawJS</title>
-<link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="/icon/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/icon/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
-<link rel="manifest" href="/icon/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
+<title>RawJS - Make document.createElement() Awesome</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/lib/highlight.min.css">
+<link rel="stylesheet" type="text/css" href="/lib/highlight.theme.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap" rel="stylesheet">
+
+<script src="/lib/highlight.min.js"></script>
+<script src="/lib/highlight.typescript.min.js"></script>
+<script src="/lib/highlight.xml.min.js"></script>
 
 <style>
-SECTION *
+*
 {
+	position: relative;
 	box-sizing: border-box;
-	padding: 0;
 	margin: 0;
-	font-weight: 400;
+	padding: 0;
 	font-size: inherit;
-	line-height: 1.5;
-}
-HTML
-{
-	font-family: Inter;
+	font-family: inherit;
 }
 BODY
 {
-	padding-bottom: 100px;
-}
-H2
-{
+	background-color: black;
+	color: white;
 	font-size: 25px;
-	font-weight: 700;
+	font-family: Inter;
 }
-* + H2
+P
 {
-	margin-top: 1em;
+	color: #D8D8D8;
+	line-height: 1.75;
+	letter-spacing: -0.4px;
 }
-UL
+P B
 {
-	padding-left: 1em;
+	color: white;
+	font-weight: 900;
 }
-* + UL
+
+.github-corner
 {
-	margin-top: 1em;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 1;
 }
-P, LI
+
+.red { color: hsl(355, 90%, 60%); }
+.green { color: hsl(120, 60%, 60%); }
+.blue { color: hsl(213, 100%, 60%); }
+
+.size-150 { font-size: 150px; }
+.size-100 { font-size: 100px; }
+.size-90 { font-size: 90px; }
+.size-80 { font-size: 80px; }
+.size-70 { font-size: 70px; }
+.size-60 { font-size: 60px; }
+.size-50 { font-size: 50px; }
+.size-40 { font-size: 40px; }
+.size-30 { font-size: 30px; }
+
+.pad-100 { padding: 100px 0; }
+.pad-90 { padding: 90px 0; }
+.pad-80 { padding: 80px 0; }
+.pad-70 { padding: 70px 0; }
+.pad-60 { padding: 60px 0; }
+.pad-50 { padding: 50px 0; }
+.pad-40 { padding: 40px 0; }
+.pad-30 { padding: 30px 0; }
+
+.space-100 { margin-top: 100px; }
+.space-200 { margin-top: 200px; }
+.space-300 { margin-top: 300px; }
+.space-400 { margin-top: 400px; }
+.space-500 { margin-top: 500px; }
+.space-600 { margin-top: 600px; }
+
+SECTION, .examples > DIV
 {
+	max-width: 800px;
+	margin: auto;
+}
+
+.button
+{
+	display: inline-block;
+	border: 3px solid blue;
+	border-radius: 10px;
+	border-color: hsl(213, 100%, 60%);
+	color: white;
+	text-decoration: none;
+	padding: 20px 40px;
+	font-weight: 900;
 	font-size: 20px;
 }
-* + P
+
+.bubbles
 {
-	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
 }
-SECTION.s1
+.bubbles .right
+{
+	align-self: flex-end;
+	text-align: right;
+}
+.bubble
+{
+	background-color: #171E27;
+	border-radius: 35px;
+	width: fit-content;
+	font-size: 40px;
+	font-weight: 900;
+	color: white;
+	line-height: 1.25;
+	padding: 50px;
+	margin-bottom: 100px;
+}
+.bubble::before, .bubble::after
+{
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	position: absolute;
+}
+.bubble::before
+{
+	content: "\201C";
+	margin-left: -0.6em;
+}
+.bubble::after
+{
+	content: "\201D";
+	margin-left: 0.1em;
+}
+.bubble .point
+{
+	position: absolute;
+	margin-top: 40px;
+	display: block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 50px 50px 0;
+	border-bottom-width: 50px;
+	border-color: transparent;
+	border-right-color: #171E27;
+}
+.examples
+{
+	max-width: 100%;
+}
+.examples .buttons
 {
 	text-align: center;
-	padding: 100px;
+	padding-top: 100px;
 }
-SECTION.s1 IMG
+.examples .buttons .button
 {
-	width: 100%;
-	max-width: 500px;
+	width: 15em;
+	border-color: #282c34;
 }
-SECTION.s1 H1
-{
-	font-size: 160px;
-	font-weight: 900;
-	line-height: 1.25;
-}
-SECTION.s1 P
+
+H3
 {
 	font-size: 40px;
-	max-width: 600px;
-	letter-spacing: -0.1vmin;
-	margin: auto;
+	padding-top: 100px;
+	margin-bottom: 20px;
 }
-SECTION.s1 SMALL
+PRE
 {
-	display: block;
-	margin: 4vmin;
-	font-size: 15px;
+	tab-size: 1.5em;
 }
-SECTION.s2
+PRE > CODE
 {
-	max-width: 600px;
-	margin: auto;
+	border-radius: 20px;
+}
+CODE
+{
+	font-family: "Fira Code";
 }
 </style>
 
-<section class="s1">
-	<img src="steak.png">
-	<h1>RawJS</h1>
-	<p>For those whose badassery shall not be impeded by frameworks.</p>
+<a class="github-corner" href="https://github.com/scrollapp/rawjs">
+	<img src="/images/github-corner-right.svg">
+</a>
+
+<section>
+	<h1 class="red size-150" style="padding: 100px 0">RawJS</h1>
+	<h2 class="size-60">
+		A library that makes<br>
+		<span class="green">document.createElement()</span><br>
+		so awesome, you may not<br>
+		need <span class="blue">React</span>, <span class="blue">Vue</span> or others.
+	</h2>
+	<p class="pad-50">
+		RawJS is a better way to call document.createElement(). Create
+		full HTML element hierarchies (no JSX), build CSS styling, and
+		wire event handlers. Write <b>everything</b> in JavaScript. RawJS is
+		inspired by the realization that web frameworks ought to be
+		replaced by web standards.
+	</p>
+	<a href="#" class="button">Learn Everything In 10 Minutes.</a>
 </section>
 
-<section class="s2">
-	<p>
-		RawJS an ultra-ergonomic HTML element construction library that is designed to facilitate the construction of complex user interfaces with in a zero-magic, vanilla TypeScript style. Call functions. Create HTMLElement objects with event bindings and CSS styling attached. That's it.
+<section class="space-400">
+	<h2 class="size-60">
+		<span class="red">RawJS</span> isn&#39;t so much a
+		<span class="green">library</span> as it is a <span class="blue">mindset</span>.
+	</h2>
+	<p class="pad-50">
+		At <b>2.3 KB</b>, RawJS doesn&#39;t do much. What RawJS really does is
+		open you up to the idea of <b>zero-magic</b> code. This is about
+		clever use of the JavaScript language to DIY things like data-binding,
+		controllers, list synchronization, and reusable components.
+	</p>
+</section>
+
+<section class="space-400 size-80" style="text-align: center;">
+	<h2>
+		With <span class="red">RawJS</span>, you can build seriously <span class="red">difficult UI</span> in vanilla JavaScript.
+		<br><br>
+		And with <span class="blue">outstanding</span> results.
+		<br><br>
+		Think <span class="green">collaborative</span> text editors, <span class="green">animators</span>, and drag and drop <span class="green">design tools</span>.
+	</h2>
+</section>
+
+<section class="examples space-400 pad-100" style="background-color: #1A1A1A;"><div>
+	<h2 class="size-80">Examples</h2>
+	<div id="examples-lessons">
+		<div>
+			<h3>Creating Elements</h3>
+			<pre><code class="language-typescript">
+				// HTML elements are created
+				// through <code>raw.*</code> calls:
+
+				var divElement = raw.div();
+				var paragraphElement = raw.p();
+				var formElement = raw.form();
+
+				// Because these are HTMLElement objects, they
+				// can be appended directly to the &lt;body&gt;.
+
+				document.body.append(
+					divElement,
+					paragraphElement,
+					formElement
+				);
+			</code></pre>
+		</div>
+		<div>
+			<h3>Elements With Attributes</h3>
+			<pre><code class="language-typescript">
+				// Add HTML attributes by passing plain
+				// JavaScript objects:
+				
+				document.body.append(
+					raw.img({ src: "image.jpg" })
+				);
+				
+				// Which results in this:
+				//
+				// &lt;body>
+				// 	&lt;img src="image.jpg">
+				// &lt;/body>
+			</code></pre>
+		</div>
+		
+	</div>
+	<div class="buttons">
+		<a href="#" class="button button-more">Show More Examples</a>
+		<a href="#" class="button button-all">Show All Examples</a>
+	</div>
+</div></section>
+
+<div id="examples-lessons-stored" style="display: none;">
+	<div>
+		<h3>Elements With Styles</h3>
+		<pre><code class="language-typescript">
+			// Add inline CSS by passing plain
+			// JavaScript objects. JavaScript numbers are
+			// supported wherever CSS numbers are supported
+			// (font-weight, z-index, opacity, etc)
+			
+			document.body.append(
+				raw.p({ fontSize: "20px", fontWeight: 500 })
+			);
+		</code></pre>
+	</div>
+	<div>
+		<h3>Elements With Attributes And Styles</h3>
+		<pre><code class="language-typescript">
+			// Both HTML attributes and CSS styles are
+			// defined using the same object literal syntax.
+			// RawJS knows what properties refer to HTML
+			// attributes and CSS styles.
+			
+			document.body.append(
+				raw.a({ href: "#", display: "block" })
+			);
+		</code></pre>
+	</div>
+	<div>
+		<h3>Elements With Class Names</h3>
+		<pre><code class="language-typescript">
+			// String parameters are interpreted as classes.
+			// You can put many classes in the same string,
+			// or use separate strings. It's all the same.
+			
+			document.body.append(
+				// These are functionally equivalent
+				raw.div("flex grow font-bold")
+				raw.div("flex", "grow", "font-bold")
+			);
+		</code></pre>
+	</div>
+	<div>
+		<h3>Elements With Text Content</h3>
+		<pre><code class="language-typescript">
+			// Add text content with the raw.text`...``
+			// template literal.
+			
+			document.body.append(
+				raw.p(raw.text`Hello!`)
+			);
+			
+			// You may like to define a global variable
+			// to make text creation more convenient:
+			
+			window.t = raw.text;
+			
+			document.body.append(
+				raw.p(t`Paragraph one text.`),
+				raw.p(t`Paragraph two text.`),
+				raw.p(t`Paragraph three text.`),
+			);
+			
+			// Now, normal strings become class names
+			// and t-prefixed strings become text content.
+			
+			raw.a(t`css-class`, "Click this anchor.");
+		</code></pre>
+	</div>
+	<div>
+		<h3>Element Hierarchies</h3>
+		<pre><code class="language-typescript">
+			// Passing in a DOM Node objects as an argument
+			// causes it to be appended to the element. 
+			// This lets you make nested element
+			// hierarchies without using JSX:
+			
+			document.body.append(
+				raw.div("level-1",
+					raw.div("level-2"),
+					raw.div("level-2",
+						raw.div("level-3")
+					),
+					raw.div("level-2")
+				)
+			);
+		</code></pre>
+	</div>
+	<div>
+		<h3>Short Circuiting</h3>
+		<pre><code class="language-typescript">
+			// The values null, undefined, false, void,
+			// and "" are discarded. This is can be handy for
+			// conditional element construction, especially
+			// when the nesting gets deep.
+			
+			const showTheLink = false;
+			
+			document.body.append(
+				raw.section(
+					raw.div(
+						showTheLink && raw.a({ href: "#"})
+					)
+				)
+			);
+		</code></pre>
+	</div>
+	<div>
+		<h3>Parameters Within Arrays</h3>
+		<pre><code class="language-typescript">
+			// Arrays of any depth are flattened before being
+			// consumed as a parameter. The following two
+			// pieces of code produce the same result:
+			
+			document.body.append(
+				raw.div("class-1", "class-2", raw.div())
+			);
+			
+			document.body.append(
+				raw.div("class-1", ["class-2", [raw.div()]])
+			);
+			
+			// This is useful when creating functions
+			// that return parameters. This way, you don't 
+			// need to think about whether a function call
+			// needs to be ...spread into place.
+			
+			function getElement() {
+				return raw.div(
+					"some-class",
+					raw.p(raw.text("Hello world."))
+				)
+			}
+			
+			function getElements() {
+				return [
+					raw.div("div-1"),
+					raw.div("div-2"),
+					raw.div("div-3"),
+				]
+			}
+			
+			document.body.append(
+				raw.div(
+					// No ...spread necessary
+					getElement(),
+					getElements(),
+				)
+			);
+			
+		</code></pre>
+	</div>
+	<div>
+		<h3>Functions As Parameters</h3>
+		<pre><code class="language-typescript">
+			// Passing a function as a parameter causes it to
+			// be executed immediately. The return value of
+			// the function is consumed as parameters.
+			
+			raw.section(
+				() => {
+					const param: Raw.Param[] = [
+						"section-class",
+					];
+					
+					for (let i = 0; i &lt; 5; i++)
+						param.push(raw.div("class-" + i));
+					
+					return param;
+				}
+			);
+			
+			// Makes: 
+			// &lt;section class="section-class"&gt;
+			// 	&lt;div class="class-0"&gt;&lt;/div&gt;
+			// 	&lt;div class="class-1"&gt;&lt;/div&gt;
+			// 	&lt;div class="class-2"&gt;&lt;/div&gt;
+			// 	&lt;div class="class-3"&gt;&lt;/div&gt;
+			// 	&lt;div class="class-4"&gt;&lt;/div&gt;
+			// &lt;/section&gt;
+			
+			// You can also capture the current element
+			// in the first argument to the function. This
+			// is extremely useful when dealing with
+			// nested hierarchies.
+			
+			raw.section(
+				raw.div(
+					raw.p(
+						e => {
+							// e is a reference to the &lt;p>
+						}
+					)
+				)
+			);
+			
+			// A concrete example for where this might
+			// be useful:
+			
+			function maybeReturnClass1() {
+				return Math.random() > 0.5 ? "class-1" : null
+			}
+			
+			raw.section(
+				maybeReturnClass1(),
+				// Only add class-2 to the containing
+				// &lt;section> if the previous function
+				// call returned class-1
+				e => e.classList.has("class-1") && "class-2"
+			)
+			
+		</code></pre>
+	</div>
+	<div>
+		<h3>Wiring Up Events</h3>
+		<pre><code class="language-typescript">
+			// Use the raw.on(...) syntax to create an event
+			// object that can be used as an argument.
+			
+			document.body.append(
+				raw.button(
+					raw.on("click", () => {
+						alert("Button clicked!");
+					})
+				)
+			);
+			
+			// The method signature of raw.on(...) is the
+			// same as element.addEventListener().
+			// For example:
+			
+			raw.button(
+				raw.on("click", ev => {
+					ev.preventDefault();
+				},
+				{ capture: true })
+			);
+			
+		</code></pre>
+	</div>
+	<div>
+		<h3>Waiting For Mount</h3>
+		<pre><code class="language-typescript">
+			// Use the special `"connected"` event to get
+			// a callback when an element first becomes
+			// connected to the DOM.
+			
+			raw.div(
+				raw.on("connected", () => {
+					// The div is now inserted into the DOM!
+				})
+			);
+			
+			// Pro tip: for a low-effort way to capture the
+			// element in the callback, just wrap the call to
+			// raw.on() in a closure. For example:
+			
+			raw.input(
+				{ type: "text" },
+				e => raw.on("connected", () => {
+					e.focus();
+					console.log("The &lt;input> is now focused!");
+				})
+			);
+		</code></pre>
+	</div>
+	<div>
+		<h3>Remote Event Targets</h3>
+		<pre><code class="language-typescript">
+			// When you attach an event handler to an element,
+			// and the element dies, so does the event handler. 
+			// But sometimes you want the life of the handler
+			// to be connected to a different element. You
+			// can do this by passing a different target as
+			// the first argument to raw.on(). For example:
+			
+			raw.div(
+				// The event handler will be attached to the window
+				// It will die when the div is removed from the DOM.
+				e => raw.on(window, "keydown", ev => {
+					if (ev.key === "Escape")
+						e.remove();
+				}),
+			);
+		</code></pre>
+	</div>
+	<div>
+		<h3>Capturing Existing Elements</h3>
+		<pre><code class="language-typescript">
+			// You can capture existing elements with the 
+			// raw.get(...) function. This function returns
+			// another function that accepts arguments
+			// which are then assigned back to the
+			// element.
+			
+			raw.get(document.body)(
+				"add-this-class",
+				raw.on("click", () => {
+					// ...
+				})
+			);
+			
+			// You can also pass more than one element,
+			// and in which case, the arguments will be 
+			// applied to each element. The code below
+			// adds the 2 classes to each element.
+			
+			raw.get(element1, element2, element3)(
+				"class1", "class2"
+			);
+		</code></pre>
+	</div>
+	<div>
+		<h3>CSS</h3>
+		<pre><code class="language-typescript">
+			
+			// Some CSS cannot be done inline and requires a 
+			// rule. This is quite easy with raw.css(). 
+			
+			raw.section(
+				// These rules are scoped to the containing
+				// &lt;section element. A hidden class is
+				// generated for the element, and this is
+				// prepended to all selectors.
+				raw.css(":hover", {
+						// Causes a 1px outline to render
+						// around the containing &lt;section>
+						// on the hover event.
+						outline: "1px solid red"
+					},
+					// Notice the leading space. This is so
+					// that the generated rule looks like
+					// .hidden-class DIV { .. } rather than
+					// .hidden-classDIV { .. }
+					" DIV", {
+						width: "100px",
+						height: "100px",
+						border: "1px solid blue",
+					}
+				),
+				raw.div(),
+				raw.div(),
+				raw.div(),
+			);
+			
+		</code></pre>
+	</div>
+	<div>
+		<h3>CSS Fallback Values</h3>
+		<pre><code class="language-typescript">
+			
+			// In CSS, sometimes you'll see the same property 
+			// defined multiple times with different values, 
+			// support different browsers recognizing different values.
+			
+			// DIV {
+			// 	width: -moz-available;
+			// 	width: -webkit-fill-available;
+			// 	width: fill-available;
+			// 	width: stretch";
+			// }
+			
+			// You can do this with an array:
+			
+			raw.div(
+				{
+					"width": [
+						"-moz-available",
+						"-webkit-fill-available",
+						"fill-available",
+						"stretch"
+					]
+				}
+			);
+		</code></pre>
+	</div>
+</div>
+
+<section class="space-400">
+	<h2 class=" size-70"><span class="blue">Wisdom</span> &gt; Party Tricks</h2>
+	<p class="pad-50">
+		Don&#39;t be seduced by demonstrations of databinding done with
+		a few keystrokes less than last years framework. Excessive focus
+		on optimizing for code length (especially in toy examples) often risks
+		deoptimizing for actual time drains.
+	</p>
+	<h2 class="size-70 pad-100" style="text-align: center;">
+		The RawJS <span class="green">mindset</span> is
+		about focusing on the
+		<span class="blue">questions that matter</span>.
+	</h2>
+	<div class="bubbles">
+		<p class="bubble right" style="width: 13em">
+			How long will it take to <span class="red">find</span> and <span class="red">fix bugs</span> as our app grows?
+			<span class="point"></span>
+		</p>
+		<p class="bubble left" style="width: 13em">
+			How easily can our code be <span class="green">reused</span> and
+			<span class="green">refactored</span>?
+			<span class="point"></span>
+		</p>
+		<p class="bubble right" style="width: 14em">
+			How do we reduce <span class="red">unexpected behavior</span>?
+			<span class="point"></span>
+		</p>
+		<p class="bubble left" style="width: 16em">
+			Does this  <span class="green">hold strong</span> if we need to do something
+			<span class="green">outside the box</span>?
+			<span class="point"></span>
+		</p>
+	</div>
+</section>
+
+<section class="space-500">
+	<h2 class="size-90">
+		<span class="red">No</span> hidden magic<br>
+		makes <span class="red">RawJS</span>
+		play nice with<br>
+		<span class="green">everything else</span>.
+	</h2>
+	<p class="pad-50">
+		Are you a Tailwind user? Or DaisyUI? Framework7? Are you
+		a Svelte user, but you need to go raw with one component?
+		<b>No problem</b>. RawJS returns plain HTMLElement objects. It
+		has <b>no</b> virtual DOM of its own, so it&#39;s never an obstacle in
+		the way of anyone else&#39;s.
+	</p>
+</section>
+
+<section class="space-400">
+	<h2 class="size-80">
+		Bet on time-tested<br>
+		<span class="blue">web standards</span>.
+	</h2>
+	<p class="pad-50">
+		Way back it was all about Backbone.js. Then it was Knockout.
+		Then Angular. Then Ember. Then React. Then new Angular.
+		Then Vue. Then React again. Now it&#39;s Svelte. And there are
+		about 500 others that were once &ldquo;the current thing&rdquo;. 
 	</p>
 	<p>
-		It turns out, this is all you need to create complex interactive UIs. You don't need React, Vue, Angular, Svelte, or any of the others. These things are complicated UI sub-systems that run around behind the scenes and do a bunch of weird magic for you in order to keep your view in sync with your data. You have to do things their way, otherwise, the magic won't work.
+		<b>Web frameworks have the lifespan of a gnat</b>. You can exit the
+		rat race by using RawJS to make subtle changes (but big
+		improvements) to the ergonomics of creating DOM element
+		heirarchies, which have been around since the 90&#39;s.
 	</p>
-	<p>
-		Frameworks tend to do a lot of reinventing of what you can already do in JavaScript. By making controllers that are just plain TypeScript classes, and using the DOM directly to store your view state, you can cut complexities associated with model/view synchronization. Some devs will shudder at this. But this technique can vastly reduce total project complexity. Code gets easier to debug. WTF moments reduce in frequency. Total project risk goes down.
+	<h2 class="size-80 space-100">
+		Not the fashionable<br>
+		<span class="green">web framework</span> of<br>
+		the week.
+	</h2>
+</section>
+
+<section class="space-500">
+	<h2 class="size-100">
+		Ready for<br>
+		<span class="blue">production</span>.
+	</h2>
+	<p class="pad-50">
+		RawJS has been the foundation of many apps. It&#39;s API design is
+		complete and there are <b>no known bugs</b>. And it&#39;s unlikely to
+		ever change in the future because it reached a point where
+		there is both <b>nothing left to add</b> and <b>nothing left to remove</b>.
 	</p>
+</section>
+
+<section class="footer space-100">
 	
-	<h2>Features</h2>
-	<ul>
-		<li>No learning curve (assuming you know JavaScript and how to work the DOM).</li>
-		<li>No props / state / special controller classes that need to be inherited.</li>
-		<li>No weird or unpredictable framework "magic".</li>
-		<li>No bloat. The whole library is only 2.3KB.</li>
-		<li>No performance overhead.</li>
-		<li>No virtual DOM.</li>
-		<li>No JSX.</li>
-		<li>No external CSS / SASS / LESS files needed. Write your CSS in TypeScript, and get all the benefits of styling becoming just another part of the code.</li>
-		<li>No more asking StackOverflow: "How do I do X in framework Y?". RawJS gives it to you raw. It's just you and the DOM. Do whatever makes sense.</li>
-	</ul>
-	<p>
-		Also:
-	</p>
-	<ul>
-		<li>RawJS is being used in production (to build <a href="https://www.scrollapp.org">Scroll</a>).</li>
-		<li>Many years in the making. Has passed through many different design variations.</li>
-		<li>Works as a <code>&lt;script&gt;</code> include, as a module, or as a <code>require()</code>.</li>
-		<li>Works in Node.js / Deno for server-side HTML generation.</li>
-	</ul>
 </section>
 
-<style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/scrollapp/rawjs">Fork me on GitHub</a></span>
+<script>
+
+function showOne()
+{
+	const lessons = document.getElementById("examples-lessons");
+	const lessonsStored = document.getElementById("examples-lessons-stored");
+	const e = lessonsStored.firstElementChild;
+	if (e)
+		lessons.append(e);
+	
+	return e;
+}
+
+function showMore(ev)
+{
+	ev.preventDefault();
+	const e = showOne();
+	showOne();
+	showOne();
+	
+	if (e)
+		e.scrollIntoView({ behavior: "smooth" });
+}
+
+function showAll(ev)
+{
+	ev.preventDefault();
+	const e = showOne();
+	while (showOne());
+	if (e)
+		e.scrollIntoView({ behavior: "smooth" });
+}
+
+document.querySelector(".button-more").addEventListener("click", showMore);
+document.querySelector(".button-all").addEventListener("click", showAll);
+
+for (var e of Array.from(document.querySelectorAll("PRE CODE")))
+{
+	let lines = (e.textContent || "").split("\n");
+	let trimCount = 0;
+	
+	while (lines[0].trim() === "")
+		lines.shift();
+	
+	while (lines[lines.length - 1].trim() === "")
+		lines.pop();
+	
+	while (lines.every(line => line === "" || line.startsWith("\t")))
+		lines = lines.map(line => line.slice(1));
+	
+	e.textContent = lines.join("\n");
+}
+hljs.highlightAll();
+</script>

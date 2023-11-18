@@ -1,0 +1,13 @@
+{
+	"name": "www.scrollapp.org",
+	"author": "Paul Gordon",
+	"version": "1.0.0",
+	"license": "UNLICENSE",
+	"repository": {
+		"type": "git",
+ 		"url": "https://github.com/scrollapp/scrollapp.org"
+	},
+	"scripts": {
+		"serve": "vite --port 5555"
+	}
+}
