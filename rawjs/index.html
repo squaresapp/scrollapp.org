@@ -289,7 +289,46 @@ CODE
 				// &lt;/body>
 			</code></pre>
 		</div>
-		
+		<div>
+			<h3>Elements With Styles</h3>
+			<pre><code class="language-typescript">
+				// Add inline CSS by passing plain
+				// JavaScript objects. JavaScript numbers are
+				// supported wherever CSS numbers are supported
+				// (font-weight, z-index, opacity, etc)
+				
+				document.body.append(
+					raw.p({ fontSize: "20px", fontWeight: 500 })
+				);
+			</code></pre>
+		</div>
+		<div>
+			<h3>Elements With Attributes And Styles</h3>
+			<pre><code class="language-typescript">
+				// Both HTML attributes and CSS styles are
+				// defined using the same object literal syntax.
+				// RawJS knows what properties refer to HTML
+				// attributes and CSS styles.
+				
+				document.body.append(
+					raw.a({ href: "#", display: "block" })
+				);
+			</code></pre>
+		</div>
+		<div>
+			<h3>Elements With Class Names</h3>
+			<pre><code class="language-typescript">
+				// String parameters are interpreted as classes.
+				// You can put many classes in the same string,
+				// or use separate strings. It's all the same.
+				
+				document.body.append(
+					// These are functionally equivalent
+					raw.div("flex grow font-bold")
+					raw.div("flex", "grow", "font-bold")
+				);
+			</code></pre>
+		</div>
 	</div>
 	<div class="buttons">
 		<a href="#" class="button button-more">Show More Examples</a>
@@ -298,46 +337,7 @@ CODE
 </div></section>
 
 <div id="examples-lessons-stored" style="display: none;">
-	<div>
-		<h3>Elements With Styles</h3>
-		<pre><code class="language-typescript">
-			// Add inline CSS by passing plain
-			// JavaScript objects. JavaScript numbers are
-			// supported wherever CSS numbers are supported
-			// (font-weight, z-index, opacity, etc)
-			
-			document.body.append(
-				raw.p({ fontSize: "20px", fontWeight: 500 })
-			);
-		</code></pre>
-	</div>
-	<div>
-		<h3>Elements With Attributes And Styles</h3>
-		<pre><code class="language-typescript">
-			// Both HTML attributes and CSS styles are
-			// defined using the same object literal syntax.
-			// RawJS knows what properties refer to HTML
-			// attributes and CSS styles.
-			
-			document.body.append(
-				raw.a({ href: "#", display: "block" })
-			);
-		</code></pre>
-	</div>
-	<div>
-		<h3>Elements With Class Names</h3>
-		<pre><code class="language-typescript">
-			// String parameters are interpreted as classes.
-			// You can put many classes in the same string,
-			// or use separate strings. It's all the same.
-			
-			document.body.append(
-				// These are functionally equivalent
-				raw.div("flex grow font-bold")
-				raw.div("flex", "grow", "font-bold")
-			);
-		</code></pre>
-	</div>
+	
 	<div>
 		<h3>Elements With Text Content</h3>
 		<pre><code class="language-typescript">
