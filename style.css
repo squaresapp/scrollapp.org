@@ -212,7 +212,7 @@ SECTION.footer H2, SECTION.footer P
 
 SECTION.footer A
 {
-	text-decoration: none;
+	text-decoration-color: hsla(150, 38%, 75%, 0.5);
 	cursor: pointer;
 }
 
